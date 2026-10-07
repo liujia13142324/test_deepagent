@@ -1,0 +1,38 @@
+# Deep Agents 全功能 demo 依赖
+#
+# 核心：deepagents 本身就带好了 LangGraph / LangChain（streaming、persistence、
+# checkpointing 都是"production-ready"这条 principle 的实现载体）。
+# 注意：PyPI 的 release 滞后于仓库，最新中间件（如 RubricMiddleware 的
+# 可用版本）只在 main 分支上，所以直接从 Git 装。
+# 如果本机走的是 editable 源码流程（见 README「换机器/新环境怎么搭」），
+# 请把下面这行注释掉，避免和 `pip install -e` 重复装：
+deepagents @ git+https://github.com/langchain-ai/deepagents.git
+
+# --- 模型 provider（model-agnostic：装哪个就用哪个，不改一行 agent 代码）---
+# 文档 FAQ: "Any model that supports tool calling works"
+langchain-anthropic        # anthropic:claude-sonnet-4-6 等
+langchain-openai           # openai:gpt-5.5 等（Responses API 默认开启）
+langchain-google-genai     # google_genai:gemini-* 等
+# 本地 / 自托管 / open-weight（Ollama、vLLM、Baseten、Fireworks ...）
+# langchain-ollama
+# langchain-openrouter
+
+# --- MCP（Tools feature：bring your own ... or any MCP server）---
+# 新版推荐 langchain[mcp]（内置 MCPAdapter，基于 FastMCP）
+langchain[mcp]
+
+# --- LangSmith 追踪（production-ready 的 tracing / evaluation）---
+langsmith
+
+# --- .env 支持 ---
+python-dotenv
+
+# --- 可选：真实沙箱后端（Shell access feature）---
+# langchain-daytona      # Daytona 云沙箱
+# langchain-modal        # Modal 沙箱
+# langchain-runloop      # Runloop devbox
+# langchain-vercel-sandbox
+# langchain-quickjs      # 进程内 JS 沙箱
+
+# --- 可选：视频文件读取（Filesystem 的 offset/limit 语义变成"秒"）---
+# deepagents[video]

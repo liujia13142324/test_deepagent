@@ -1,0 +1,9 @@
+{
+  "dependencies": ["."],
+  "graphs": {
+    "agent": "./d16_production.py:build_graph",
+    "research": "./d05_subagents.py:build_graph"
+  },
+  "env": ".env",
+  "python_version": "3.12"
+}
